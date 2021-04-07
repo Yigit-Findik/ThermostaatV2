@@ -64,7 +64,6 @@ public class thermostaatDriver {
 
 
                         if (tempProgActive) {
-
                             //night temp beneath
                             if (hour > 21 || hour < 6) {
                                 System.out.print("Night temprature: ");
@@ -81,6 +80,7 @@ public class thermostaatDriver {
                                     }
                                     if (tempCurTemp < tempNightTemp) {
                                         tempCurTemp = tempNightTemp;
+                                        System.out.println("Done, the new temperature is: " + tempCurTemp );
                                     }
                                 }
                                 if (tempNightTemp > tempCurTemp) {
@@ -90,6 +90,7 @@ public class thermostaatDriver {
                                     }
                                     if (tempCurTemp > tempNightTemp) {
                                         tempCurTemp = tempNightTemp;
+                                        System.out.println("Done, the new temperature is: " + tempCurTemp );
                                     }
                                 }
                             }
@@ -110,6 +111,7 @@ public class thermostaatDriver {
                                     }
                                     if (tempCurTemp < tempDayTemp) {
                                         tempCurTemp = tempDayTemp;
+                                        System.out.println("Done, the new temperature is: " + tempCurTemp );
                                     }
                                 }
                                 if (tempDayTemp > tempCurTemp) {
@@ -119,13 +121,11 @@ public class thermostaatDriver {
                                     }
                                     if (tempCurTemp > tempDayTemp) {
                                         tempCurTemp = tempDayTemp;
+                                        System.out.println("Done, the new temperature is: " + tempCurTemp );
                                     }
                                 }
                             }
-
-
                         }
-
                         arrayThermostat[a] = new thermostaat(tempOperational, tempProgActive, tempMinTemp, tempMaxTemp, tempCurTemp, tempStepSize, tempNightTemp, tempDayTemp);
                     }
 
