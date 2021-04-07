@@ -26,7 +26,8 @@ public class thermostaat {
     }
 
     //constructor with parameters
-    public thermostaat(boolean progActive, float minTemp, float maxTemp, float curTemp, float stepSize, float nightTemp, float dayTemp) {
+    public thermostaat(boolean operational, boolean progActive, float minTemp, float maxTemp, float curTemp, float stepSize, float nightTemp, float dayTemp) {
+        this.operational = operational;
         this.progActive = progActive;
         this.minTemp = minTemp;
         this.maxTemp = maxTemp;
@@ -36,14 +37,34 @@ public class thermostaat {
         this.dayTemp = dayTemp;
     }
 
+    //Override toString methode.
+    @Override
+    public String toString() {
+        String thermostaat1 = "";
+        thermostaat1 = " Thermostat overview " +
+                "\r\nSystem on off       : " + getOperational() +
+                "\r\nprogram status      : " + getProgActive() +
+                "\r\nMin Temprature      : " + getMinTemp() +
+                "\r\nMax Temprature     	: " + getMaxTemp() +
+                "\r\nCurrent Temprature  : " + getCurTemp() +
+                "\r\nStep size	     	    : " + getStepSize() +
+                "\r\nNight Temprature	   : " + getNightTemp() +
+                "\r\nDay Temprature		    : " + getDayTemp() +
+                "\r\n---------------";
+        return thermostaat1;
+    }
+
     public void addHistory(float temp) {
         try {
-            //for () {
-            // history[i] = temp;
-            //}
+            for (int i = 0; i < history.length; i++) {
+             history[i] = temp;
+            }
         }
-        catch(Exception e){
-
+        catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("Array out of bound, this is the original error: " + e);
+        }
+        catch(Exception b){
+            System.out.println(b);
         }
     }
 
@@ -58,6 +79,18 @@ public class thermostaat {
 
     //setters and getters are under me :}
     //getters voor (mogelijk) nodig zou zijn.
+    public boolean getOperational() {
+        //if (input value turned on) {
+        //      (System powered on,)
+        //}
+        //Else if (input value turned off) {
+        //      print(System powered off)
+        //}
+        return operational;
+    }
+    public boolean getProgActive() {
+        return progActive;
+    }
     public float getCurTemp() {
         return curTemp;
     }
