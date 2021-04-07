@@ -42,13 +42,13 @@ public class thermostaat {
     public String toString() {
         String thermostaat1 = "";
         thermostaat1 = " Thermostat overview " +
-                "\r\nSystem on off       : " + getOperational() +
-                "\r\nprogram status      : " + getProgActive() +
-                "\r\nMin Temprature      : " + getMinTemp() +
-                "\r\nMax Temprature     	: " + getMaxTemp() +
-                "\r\nCurrent Temprature  : " + getCurTemp() +
+                "\r\nSystem on off           : " + getOperational() +
+                "\r\nprogram status          : " + getProgActive() +
+                "\r\nMin Temprature          : " + getMinTemp() +
+                "\r\nMax Temprature     	    : " + getMaxTemp() +
+                "\r\nCurrent Temprature      : " + getCurTemp() +
                 "\r\nStep size	     	    : " + getStepSize() +
-                "\r\nNight Temprature	   : " + getNightTemp() +
+                "\r\nNight Temprature	    : " + getNightTemp() +
                 "\r\nDay Temprature		    : " + getDayTemp() +
                 "\r\n---------------";
         return thermostaat1;
