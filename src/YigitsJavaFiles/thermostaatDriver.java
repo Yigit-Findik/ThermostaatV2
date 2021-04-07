@@ -1,9 +1,20 @@
 package YigitsJavaFiles;
 import java.util.*;
+import java.time.LocalDateTime;
 
 public class thermostaatDriver {
 
+    static LocalDateTime now;
+
     public static void main(String[] args) {
+        timeset();
+        int day = now.getDayOfMonth();
+        int month = now.getMonthValue();
+        int year = now.getYear();
+        int hour = now.getHour();
+        int minute = now.getMinute();
+        int second = now.getSecond();
+
         boolean tempOperational;
         boolean tempProgActive;
         float tempMinTemp;
@@ -48,12 +59,71 @@ public class thermostaatDriver {
                         System.out.print("Step size: ");
                         tempStepSize = in.nextFloat();
 
-                        if (tempProgActive == true) {
-                            System.out.print("Night temprature: ");
-                            tempNightTemp = in.nextFloat();
+                        tempNightTemp = 5f;
+                        tempDayTemp = 15f;
 
-                            System.out.print("Day temprature: ");
-                            tempDayTemp = in.nextFloat();
+
+                        if (tempProgActive) {
+
+                            //night temp beneath
+                            if (hour > 21 || hour < 6) {
+                                System.out.print("Night temprature: ");
+                                try {
+                                    tempNightTemp = in.nextFloat();
+                                }
+                                catch(Exception e) {
+                                    System.out.println("You have entered an invalid data type. Use a number!");
+                                }
+                                if (tempNightTemp < tempCurTemp) {
+                                    while (tempCurTemp > tempNightTemp) {
+                                        tempCurTemp = tempCurTemp - tempStepSize;
+                                        System.out.println(tempCurTemp);
+                                    }
+                                    if (tempCurTemp < tempNightTemp) {
+                                        tempCurTemp = tempNightTemp;
+                                    }
+                                }
+                                if (tempNightTemp > tempCurTemp) {
+                                    while (tempCurTemp < tempNightTemp) {
+                                        tempCurTemp = tempCurTemp + tempStepSize;
+                                        System.out.println(tempCurTemp);
+                                    }
+                                    if (tempCurTemp > tempNightTemp) {
+                                        tempCurTemp = tempNightTemp;
+                                    }
+                                }
+                            }
+
+                            //day temp beneath
+                            else if (hour > 6 || hour < 21) {
+                                System.out.print("Day temprature: ");
+                                try {
+                                    tempDayTemp = in.nextFloat();
+                                }
+                                catch(Exception e) {
+                                    System.out.println("You have entered an invalid data type. Use a number!");
+                                }
+                                if (tempDayTemp < tempCurTemp) {
+                                    while (tempCurTemp > tempDayTemp) {
+                                        tempCurTemp = tempCurTemp - tempStepSize;
+                                        System.out.println(tempCurTemp);
+                                    }
+                                    if (tempCurTemp < tempDayTemp) {
+                                        tempCurTemp = tempDayTemp;
+                                    }
+                                }
+                                if (tempDayTemp > tempCurTemp) {
+                                    while (tempCurTemp < tempDayTemp) {
+                                        tempCurTemp = tempCurTemp + tempStepSize;
+                                        System.out.println(tempCurTemp);
+                                    }
+                                    if (tempCurTemp > tempDayTemp) {
+                                        tempCurTemp = tempDayTemp;
+                                    }
+                                }
+                            }
+
+
                         }
 
                         arrayThermostat[a] = new thermostaat(tempOperational, tempProgActive, tempMinTemp, tempMaxTemp, tempCurTemp, tempStepSize, tempNightTemp, tempDayTemp);
@@ -72,6 +142,9 @@ public class thermostaatDriver {
             }
         }
         while (maxSize <= 0);
-    }
 
+    }
+    public static void timeset(){
+        now = LocalDateTime.now();
+    }
 }
