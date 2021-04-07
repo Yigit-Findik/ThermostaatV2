@@ -18,7 +18,7 @@ public class thermostaatDriver {
         maxSize = 0;
         do {
             try {
-                System.out.println("Enter the number of thermostats you would like to add Enter 0 (zero) if you do not wish to add products: ");
+                System.out.println("Enter the number of thermostats you would like to add. Enter 0 (zero) if you do not wish to add any thermostats: ");
                 maxSize = in.nextInt();
 
                 if (maxSize == 0) {
@@ -30,34 +30,36 @@ public class thermostaatDriver {
                     for (int a = 0; a < arrayThermostat.length; a++){
 
                         in.nextLine();
-                        System.out.print("bool: ");
+                        System.out.print("Turn system on/off, use true or false: ");
                         tempOperational = in.nextBoolean();
 
-                        System.out.print("bool: ");
+                        System.out.print("Activate time program, use true or false: ");
                         tempProgActive = in.nextBoolean();
 
-                        System.out.print("float: ");
+                        System.out.print("Minimum temprature: ");
                         tempMinTemp = in.nextFloat();
 
-                        System.out.print("float: ");
+                        System.out.print("Maximum temprature: ");
                         tempMaxTemp = in.nextFloat();
 
-                        System.out.print("float: ");
+                        System.out.print("Current temprature: ");
                         tempCurTemp = in.nextFloat();
 
-                        System.out.print("float: ");
+                        System.out.print("Step size: ");
                         tempStepSize = in.nextFloat();
 
-                        System.out.print("float: ");
-                        tempNightTemp = in.nextFloat();
+                        if (tempProgActive == true) {
+                            System.out.print("Night temprature: ");
+                            tempNightTemp = in.nextFloat();
 
-                        System.out.print("float: ");
-                        tempDayTemp = in.nextFloat();
+                            System.out.print("Day temprature: ");
+                            tempDayTemp = in.nextFloat();
+                        }
 
                         arrayThermostat[a] = new thermostaat(tempOperational, tempProgActive, tempMinTemp, tempMaxTemp, tempCurTemp, tempStepSize, tempNightTemp, tempDayTemp);
                     }
 
-                    System.out.println("Here are your products: \r\n");
+                    System.out.println("Here are your thermostats: \r\n");
 
                     for (int i = 0; i < arrayThermostat.length; i++) {
                         System.out.println(arrayThermostat[i].toString());
