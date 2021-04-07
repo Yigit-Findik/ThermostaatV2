@@ -57,7 +57,7 @@ public class thermostaat {
     public void addHistory(float temp) {
         try {
             for (int i = 0; i < history.length; i++) {
-             history[i] = temp;
+                history[i] = temp;
             }
         }
         catch(ArrayIndexOutOfBoundsException e){
@@ -65,15 +65,6 @@ public class thermostaat {
         }
         catch(Exception b){
             System.out.println(b);
-        }
-    }
-
-    public void setStepSize() {
-        try {
-
-        }
-        catch(Exception e){
-
         }
     }
 

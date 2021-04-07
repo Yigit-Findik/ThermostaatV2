@@ -23,10 +23,13 @@ public class thermostaatDriver {
         float tempStepSize;
         float tempNightTemp;
         float tempDayTemp;
+
+        String tempHistory[] = {null,null,null,null,null,null,null,null,null,null};
+
         int maxSize;
         Scanner in = new Scanner(System.in);
-
         maxSize = 0;
+
         do {
             try {
                 System.out.println("Enter the number of thermostats you would like to add. Enter 0 (zero) if you do not wish to add any thermostats: ");
@@ -126,6 +129,12 @@ public class thermostaatDriver {
                                 }
                             }
                         }
+                        /*
+                        for () {
+                            loop variable with variable in java file to loop it into the history array and print array for variables that used to be there
+                        }
+                        */
+
                         arrayThermostat[a] = new thermostaat(tempOperational, tempProgActive, tempMinTemp, tempMaxTemp, tempCurTemp, tempStepSize, tempNightTemp, tempDayTemp);
                     }
 
