@@ -24,8 +24,6 @@ public class thermostaatDriver {
         float tempNightTemp;
         float tempDayTemp;
 
-        String tempHistory[] = {null,null,null,null,null,null,null,null,null,null};
-
         int maxSize;
         Scanner in = new Scanner(System.in);
         maxSize = 0;
@@ -97,6 +95,7 @@ public class thermostaatDriver {
                                     }
                                 }
                             }
+                            //end night temp
 
                             //day temp beneath
                             else if (hour > 6 || hour < 21) {
@@ -128,13 +127,63 @@ public class thermostaatDriver {
                                     }
                                 }
                             }
+                            //end day temp
                         }
-                        /*
-                        for () {
-                            loop variable with variable in java file to loop it into the history array and print array for variables that used to be there
-                        }
-                        */
+                        //end programme
 
+                        String ArrayStringProgActive = String.valueOf(tempOperational);
+                        String ArrayStringOperational = String.valueOf(tempProgActive);
+                        String ArrayStringMinTemp = String.valueOf(tempMinTemp);
+                        String ArrayStringMaxTemp = String.valueOf(tempMaxTemp);
+                        String ArrayStringCurTemp = String.valueOf(tempCurTemp);
+                        String ArrayStringStepSize = String.valueOf(tempStepSize);
+
+                        String ArrayStringNightTemp = String.valueOf(tempNightTemp);
+                        String ArrayStringDayTemp = String.valueOf(tempDayTemp);
+
+                        if (tempProgActive) {
+                            String fake[] = {ArrayStringProgActive, ArrayStringOperational, ArrayStringMinTemp, ArrayStringMaxTemp, ArrayStringCurTemp, ArrayStringStepSize, ArrayStringNightTemp, ArrayStringDayTemp};
+
+                            try {
+                                String[] history = {null,null,null,null,null,null,null,null,null,null};
+                                for(int i = 0; i < fake.length; i++) {
+                                    history[i] = fake[i];
+                                    System.out.println(history[i]);
+
+                                    if (history[i] == null) {
+                                        String tempvar = null;
+                                        history[i - 1] = tempvar;
+                                    }
+                                    history[i] = tempvar;
+
+                                }
+                            }
+                            catch(ArrayIndexOutOfBoundsException e){
+                                System.out.println("Array out of bound, this is the original error: " + e);
+                            }
+                            catch(Exception b){
+                                System.out.println(b);
+                            }
+                        }
+                        else {
+                            String fake[] = {ArrayStringProgActive, ArrayStringOperational, ArrayStringMinTemp, ArrayStringMaxTemp, ArrayStringCurTemp, ArrayStringStepSize};
+
+                            try {
+                                System.out.println("History log,");
+                                String[] history = {null,null,null,null,null,null,null,null,null,null};
+                                for(int i = 0; i < fake.length; i++) {
+                                    history[i] = fake[i];
+                                    System.out.println(history[i]);
+                                }
+                            }
+                            catch(ArrayIndexOutOfBoundsException e){
+                                System.out.println("Array out of bound, this is the original error: " + e);
+                            }
+                            catch(Exception b){
+                                System.out.println(b);
+                            }
+                        }
+                        System.out.println("\r\n");
                         arrayThermostat[a] = new thermostaat(tempOperational, tempProgActive, tempMinTemp, tempMaxTemp, tempCurTemp, tempStepSize, tempNightTemp, tempDayTemp);
                     }
 
